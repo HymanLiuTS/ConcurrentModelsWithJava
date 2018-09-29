@@ -5,5 +5,6 @@
 * 创建线程的两种方式：
   * 继承Thread类
   * 实现Runnable接口
+  ![Image text](http://www.codenest.cn/static/images/uml/001.jpg)
 
 
