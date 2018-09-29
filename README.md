@@ -6,5 +6,7 @@
   * 继承Thread类
   * 实现Runnable接口
   <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/001.jpg"/>
+* 启动线程
+ * Thread.start()
 
 
