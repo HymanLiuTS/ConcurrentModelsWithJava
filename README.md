@@ -10,5 +10,3 @@
 ```Java
 Thread.start();
 ```
-
-
