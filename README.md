@@ -27,4 +27,4 @@ t2.start();
 4. Thread.interrupt();//实例方法，中断线程
 5. boolean Thread.isInterrupted(); //实例方法判断线程是否中断
 6. static boolean Thread.interrupted();//静态方法，判断线程是否中断并清除中断状态
-7. void thread.stop(); //终止线程，不建议使用
+7. void Thread.stop(); //终止线程，不建议使用
