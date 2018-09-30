@@ -15,3 +15,7 @@ t2.start();
   * 线程函数自然结束。
   * 使用thread.stop()方法结束，这种方法会造成数据不一致的问题，不推荐使用。
   * 在Thread子类或者Runnable实现中增加一个boolean类型的标志字段。
+* 中断线程
+  * 中断线程 —— public void Thread.interrupt() 
+  * 判断线程是否被中断 —— public boolean Thread.isInterrupted() 
+  * 判断当前线程是否被中断，并清除中断状态 —— public static boolean Thread.interrupted() 
