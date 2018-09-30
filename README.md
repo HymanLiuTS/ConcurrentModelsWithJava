@@ -22,10 +22,11 @@ t2.start();
   * 若线程处于Thread.sleep()状态，线程发生中断时会抛出`InterruptedException`，并`清除中断`状态。
 * 接口清单
 1. void ThreadChild.run();        
-2. void Thread.sleep(long millis) throws InterruptedException;
-3. Thread Thread.currentThread();  //获取当前线程对象
-4. Thread.interrupt();//实例方法，中断线程
-5. boolean Thread.isInterrupted(); //实例方法判断线程是否中断
-6. static boolean Thread.interrupted();//静态方法，判断线程是否中断并清除中断状态
-7. void Thread.start(); 
-8. void Thread.stop(); //终止线程，不建议使用
+2. void Runnable.run();
+3. void Thread.sleep(long millis) throws InterruptedException;
+4. Thread Thread.currentThread();  //获取当前线程对象
+5. Thread.interrupt();//实例方法，中断线程
+6. boolean Thread.isInterrupted(); //实例方法判断线程是否中断
+7. static boolean Thread.interrupted();//静态方法，判断线程是否中断并清除中断状态
+8. void Thread.start(); 
+9. void Thread.stop(); //终止线程，可能造成数据不一致问题，不建议使用
