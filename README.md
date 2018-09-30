@@ -21,13 +21,6 @@ t2.start();
   * 判断当前线程是否被中断，并清除中断状态 —— public static boolean Thread.interrupted() 
   * 若线程处于Thread.sleep()状态，线程发生中断时会抛出`InterruptedException`，并`清除中断`状态。
 * 接口清单
-<table border="1">
-  <tr>
-    <th>Month</th>
-    <th>Savings</th>
-  </tr>
-  <tr>
-    <td>January</td>
-    <td>$100</td>
-  </tr>
-</table>
+1. void ThreadChild.run();        
+2. void Thread.sleep(long millis) throws InterruptedException;
+3. 
