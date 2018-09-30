@@ -20,4 +20,4 @@ t2.start();
   * 判断线程是否被中断 —— public boolean Thread.isInterrupted() 
   * 判断当前线程是否被中断，并清除中断状态 —— public static boolean Thread.interrupted() 
   * 若线程处于Thread.sleep()状态，线程发生中断时会抛出`InterruptedException`，并`清除中断`状态。
-  
+* 接口清单
