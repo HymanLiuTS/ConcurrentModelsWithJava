@@ -11,6 +11,22 @@ public class ThreadChild extends Thread {
 
 	@Override
 	public void run() {
-		System.out.println("Hello,I am child thread" + Thread.currentThread().getName());
+		while(true){
+			System.out.println("Hello,I am child thread" + Thread.currentThread().getName());
+			//线程中断
+			if(Thread.interrupted()){
+				System.out.println("Hello,I am Interrupted!");
+				return;
+			}
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				//sleep被中断后会抛出InterruptedException，并清除中断位
+				Thread.currentThread().interrupt();
+			}
+			
+		}
 	}
 }

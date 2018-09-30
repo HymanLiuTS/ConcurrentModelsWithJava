@@ -11,9 +11,33 @@
 */
 public class RunnableImpl implements Runnable {
 
+	/**
+	 * 线程关闭的标志
+	 */
+	private boolean stopMe=false;
+	
+	/**
+	 * 设置stopMe
+	 * @param stopMe the stopMe to set
+	 * @author Hyman 
+	 * 2018年9月30日上午9:32:10
+	 */
+	public void setStopMe(boolean stopMe) {
+		this.stopMe = stopMe;
+	}
+
 	@Override
 	public void run() {
-		System.out.println("Hello,in " + RunnableImpl.class.getName());
+		while(stopMe==false){
+			try {
+				
+				System.out.println("Hello,in " + RunnableImpl.class.getName());
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
