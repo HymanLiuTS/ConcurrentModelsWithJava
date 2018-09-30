@@ -8,5 +8,6 @@
   <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/001.jpg"/>
 * 启动线程
 ```Java
-Thread.start();
+Thread t2=new Thread(RunnableImpl);
+t2.start();
 ```
