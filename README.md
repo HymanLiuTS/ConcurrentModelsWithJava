@@ -36,7 +36,7 @@ t2.start();
 　　调用该方法后，所在线程会发生等待,并加入该object的线程等待队列。<br>
 * Object.notify()<br>
  　　调用该方法后，通知所有object等待队列的线程，随机选择一个线程，退出等待状态。
-* 继承关系
+* UML关系
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/002.jpg"/>
 
 * 注意
@@ -48,9 +48,10 @@ t2.start();
 1. void Object.wait()
 2. void Object.notify()
 3. void Object.notifyAll()
+4. long System.currentTimeMillis();//获取当前的时间戳的毫秒数
 
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 03BadSuspendTS<br>
-* 继承关系
+* UML关系
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/003.jpg"/>
 
 * void Thread.suspend()
@@ -64,3 +65,15 @@ t2.start();
 * 方法清单
     * void suspend();
     * void resume();
+
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 04JoinYieldTS<br>
+* UML关系
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/004.jpg"/>
+
+* thread.join()<br>  
+　　等待线程结束。
+* Thread.yield()<br>  
+　　静态方法，当前线程出让资源。
+* 方法清单
+    * void Thread.join()
+    * static void Thread.yield()
