@@ -52,3 +52,15 @@ t2.start();
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 03BadSuspendTS<br>
 * 继承关系
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/003.jpg"/>
+
+* void Thread.suspend()
+　　用来挂起当前线程
+* void Thread.resume()
+　　用来唤醒被挂起的线程
+* 注意
+ * 不建议使用这两个方法
+ * suspend和resume在被调用后，不会释放占有的对象锁，这样会影响其它使用该对象锁的线程。
+ * 如果resume先于suspend被调用，会造成线程无限期的挂起。
+* 方法清单
+ * void suspend();
+ * void resume();
