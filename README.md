@@ -70,10 +70,8 @@ t2.start();
 * UML关系
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/004.jpg"/>
 
-* thread.join()<br>  
-　　等待线程结束。
-* Thread.yield()<br>  
-　　静态方法，当前线程出让资源。
+* thread.join()  等待线程结束。
+* Thread.yield()  静态方法，当前线程出让资源。
 * 方法清单
     * void Thread.join()
     * static void Thread.yield()
