@@ -48,3 +48,7 @@ t2.start();
 1. void Object.wait()
 2. void Object.notify()
 3. void Object.notifyAll()
+
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 03BadSuspendTS<br>
+* 继承关系
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/003.jpg"/>
