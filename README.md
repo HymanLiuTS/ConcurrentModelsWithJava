@@ -19,7 +19,7 @@ t2.start();
   * 判断线程是否被中断 —— public boolean Thread.isInterrupted() 
   * 判断当前线程是否被中断，并清除中断状态 —— public static boolean Thread.interrupted() 
   * 若线程处于Thread.sleep()状态，线程发生中断时会抛出`InterruptedException`，并`清除中断`状态。
-* 接口清单
+* 方法清单
 1. void ThreadChild.run();        
 2. void Runnable.run();
 3. void Thread.sleep(long millis) throws InterruptedException;
@@ -42,3 +42,7 @@ t2.start();
     * 调用notify()方法后，等待队列中结束等待状态的线程是随机挑选的，而notifyAll()方法会使等待队列中所有的线程都结束等待状态。
     * wait()、notify()和notifyAll()方法继承自Object类，也就是说Java中所有的类都含有了这三种方法。
     * 在使用obj.wait()和obj.notify()时，必须先获取obj的对象锁，也就是是说wait()和notify()必须在synchronized(obj){}语句块之内使用。
+* 方法清单
+1. void Object.wait()
+2. void Object.notify()
+3. void Object.notifyAll()
