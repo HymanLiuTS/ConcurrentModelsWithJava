@@ -58,9 +58,9 @@ t2.start();
 * void Thread.resume()
 　　用来唤醒被挂起的线程
 * 注意
- * 不建议使用这两个方法
- * suspend和resume在被调用后，不会释放占有的对象锁，这样会影响其它使用该对象锁的线程。
- * 如果resume先于suspend被调用，会造成线程无限期的挂起。
+    * 不建议使用这两个方法
+    * suspend和resume在被调用后，不会释放占有的对象锁，这样会影响其它使用该对象锁的线程。
+    * 如果resume先于suspend被调用，会造成线程无限期的挂起。
 * 方法清单
- * void suspend();
- * void resume();
+    * void suspend();
+    * void resume();
