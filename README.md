@@ -4,7 +4,7 @@
 * 创建线程的两种方式：
   * 继承Thread类。
   * 实现Runnable接口。<br>
-UML图：
+* UML图：
   <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/001.jpg"/>
   
 * 启动线程
@@ -31,3 +31,9 @@ t2.start();
 7. static boolean Thread.interrupted();//静态方法，判断线程是否中断并清除中断状态
 8. void Thread.start(); 
 9. void Thread.stop(); //终止线程，可能造成数据不一致问题，不建议使用
+
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 02ThreadWaitTS<br>
+* Object.wait()<br>
+　　调用该方法后，所在线程会发生等待,并加入该object的线程等待队列。<br>
+* Object.notify()<br>
+ 　　调用该方法后，通知所有object等待队列的线程，随机选择一个线程，推出等待状态。
