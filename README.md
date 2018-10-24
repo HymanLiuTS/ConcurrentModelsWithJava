@@ -35,3 +35,9 @@ t2.start();
 　　调用该方法后，所在线程会发生等待,并加入该object的线程等待队列。<br>
 * Object.notify()<br>
  　　调用该方法后，通知所有object等待队列的线程，随机选择一个线程，推出等待状态。
+* 继承关系
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/002.jpg"/>
+* 注意
+ * 调用notify()方法后，等待队列中结束等待状态的线程是随机挑选的，而notifyAll()方法会使等待队列中所有的线程都结束等待状态。
+ * wait()、notify()和notifyAll()方法继承自Object类，也就是说Java中所有的类都含有了这三种方法。
+ * 在使用obj.wait()和obj.notify()时，必须先获取obj的对象锁，也就是是说wait()和notify()必须在synchronized(obj){}语句块之内使用。
