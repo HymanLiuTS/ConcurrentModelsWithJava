@@ -4,7 +4,9 @@
 * 创建线程的两种方式：
   * 继承Thread类。
   * 实现Runnable接口。
+* 继承关系
   <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/001.jpg"/>
+
 * 启动线程
 ```Java
 Thread t2=new Thread(new RunnableImpl());
@@ -34,7 +36,7 @@ t2.start();
 * Object.wait()<br>
 　　调用该方法后，所在线程会发生等待,并加入该object的线程等待队列。<br>
 * Object.notify()<br>
- 　　调用该方法后，通知所有object等待队列的线程，随机选择一个线程，推出等待状态。
+ 　　调用该方法后，通知所有object等待队列的线程，随机选择一个线程，退出等待状态。
 * 继承关系
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/002.jpg"/>
 
