@@ -84,3 +84,16 @@ t2.start();
   ```Java
   public volatile boolean ready;
   ```
+
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 06ThreadGroupTS<br>
+* UML关系
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/005.jpg"/>
+
+* 线程组<br>
+　　线程组（ThreadGroup）是把线程在业务上的一个划分。
+* 方法清单
+    * TheadGroup(string); //线程组的构造函数，传入线程组的名称
+    * Thread(ThreadGroup,Runnable,string); //线程的构造函数，将线程组作为一个参数传递给线程
+    * ThreadGroup.getName(); //获取线程组的名称
+    * ThreadGroup.activeCount(); //获取线程组中已经启动的线程的个数
+    * ThreadGroup.list(); //打印出线程组和其包含的所有的线程的信息
