@@ -77,3 +77,10 @@ t2.start();
 * 方法清单
     * void Thread.join()
     * static void Thread.yield()
+
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 05VolatileTS<br>
+* volatile<br>
+　　volatile主要用来保证声明变量在多线程中的可见性，保证在一个线程中进行修改后，另一个线程可以知道它已经被修改。但是它不能保证该变量的原子性，也就是说多线程同时修改变量时，不能保证得到预期结果。
+  ```Java
+  public volatile boolean ready;
+  ```
