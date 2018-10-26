@@ -99,7 +99,7 @@ t2.start();
     * ThreadGroup.list(); //打印出线程组和其包含的所有的线程的信息
     
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 07DeamonTS<br>
-* UML图
+* UML关系
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/006.jpg"/>
 
 * 线程分类
@@ -113,3 +113,16 @@ t2.start();
 
 * 方法清单
     * thread.setDemaon(Boolean)
+    
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 08PriorityTS<br>
+* UML关系
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/007.jpg"/>
+
+* 线程优先级
+    * 高优先级的线程在资源的竞争中有大概率争取到资源。设置线程优先级的代码如下：
+     ```Java
+     Thread t=new Thread();
+     t.setPriority(10);
+     ```
+* 方法清单
+    * Thread.setPriority(int);//参数的数字越高，优先级越高。
