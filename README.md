@@ -97,3 +97,19 @@ t2.start();
     * ThreadGroup.getName(); //获取线程组的名称
     * ThreadGroup.activeCount(); //获取线程组中已经启动的线程的个数
     * ThreadGroup.list(); //打印出线程组和其包含的所有的线程的信息
+    
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 07DeamonTS<br>
+* UML图
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/006.jpg"/>
+
+* 线程分类
+    * 用户线程  系统的工作线程，完成这个程序需要完成的业务操作，默认创建的线程就是用户线程，即使主线程结束，只要用户线程的业务还没有做完，它就不会退出。
+    * 守护线程  守护应用程序的线程，将一个线程设置成守护线程后，随着主线程的结束，守护线程也会退出。设置线程t为守护线程：
+    ```Java
+    Thread t = new Thread();
+    t.setDeamon(true);
+    t.start();
+    ```
+
+* 方法清单
+    * thread.setDemaon(Boolean)
