@@ -126,3 +126,39 @@ t2.start();
      ```
 * 方法清单
     * Thread.setPriority(int);//参数的数字越高，优先级越高。
+
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 09SynchronizedTS<br>
+* UML关系
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/008.jpg"/>
+
+* synchronized<br>
+　　synchronized实现线程的同步，他的工作是对同步的代码块加锁，使得每一次只能有一个线程进入同步块，从而保证线程间的安全。
+  
+* 三种加锁方式
+    * 指定加锁对象，使用任意一个对象实例作为加锁对象，线程间共享该对象。
+    ```java
+    public static LockObjectRunnable lock = new LockObjectRunnable();
+    synchronized(lock){
+				 
+			 }
+    ```
+    * 对实例方法加锁，当对Runnale的实现类的实例方法加锁时，需要保证创建线程时传入的是同一个该类的实例。
+    ```java
+    LockInstanceMethodRunnable run = new LockInstanceMethodRunnable();
+		  Thread t3 = new Thread(run);
+		  Thread t4 = new Thread(run);
+    ```
+    * 对静态方法加锁，当对Runnale的实现类的静态方法加锁时，创建线程时可以创建多个该类的实例。
+    ```java
+    public void run() {
+		  for(int j=0;j<100000;j++){
+			   increase();
+		    }
+	    }
+	    public synchronized static void increase(){
+		    i++;
+	    }
+    ```
+
+
+
