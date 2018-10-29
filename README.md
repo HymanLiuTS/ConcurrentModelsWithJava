@@ -160,5 +160,16 @@ t2.start();
 	    }
     ```
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 10ReentrantLockTS<br>
+* 普通重入锁和支持中断的重入锁的UNL关系
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/009.jpg"/>
 
+* 重入锁ReentrantLock
+    * 重入锁完全可以替代synchronized关键字，两者的执行效率差不多。
+    * 与synchronized关键字相比，重入锁支持响应中断，线程发生中断时，它会抛出InterruptedException异常。
+* 方法清单
+    * reentrantLock.lock(); //加锁
+    * reentrantLock.lockInterruptibly();//支持中断的加锁
+    * reentraintLock.isHeldByCurrentThread();//判断锁是否被当前线程所拥有
+    * reentraintLock.unlock();//释放锁
 
