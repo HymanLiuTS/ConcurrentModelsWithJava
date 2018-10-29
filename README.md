@@ -161,15 +161,26 @@ t2.start();
     ```
 
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 10ReentrantLockTS<br>
-* 普通重入锁和支持中断的重入锁的UNL关系
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 10ReentrantLockTS2<br>
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 10ReentrantLockTS3<br>
+* 普通重入锁和支持中断的重入锁的UML关系
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/009.jpg"/>
 
 * 重入锁ReentrantLock
     * 重入锁完全可以替代synchronized关键字，两者的执行效率差不多。
     * 与synchronized关键字相比，重入锁支持响应中断，线程发生中断时，它会抛出InterruptedException异常。
+    * bool reentrantLock.tryLock(long time,TimeUnit unit)设置重入锁等待超时，一个参数表示等待时长，另一个参数表示时间单位，如果超时返回false，成功获得锁返回true；如果两个参数都不填，尝试获得锁，若获取不到直接返回false，不再进行等待。
+    * 公平锁：先申请资源就先获得锁，后申请资源就后获得锁。默认情况下synchronized关键字和重入锁都是`非公平`锁，在创建重入锁时传入true可以创建公平锁。
+    ```java
+    public static ReentrantLock lock = new ReentrantLock(true);
+
+    ```
 * 方法清单
-    * reentrantLock.lock(); //加锁
-    * reentrantLock.lockInterruptibly();//支持中断的加锁
-    * reentraintLock.isHeldByCurrentThread();//判断锁是否被当前线程所拥有
-    * reentraintLock.unlock();//释放锁
+    * void reentrantLock.lock(); //加锁
+    * void reentrantLock.lockInterruptibly();//支持中断的加锁
+    * void reentraintLock.isHeldByCurrentThread();//判断锁是否被当前线程所拥有
+    * bool reentrantLock.tryLock(long time,TimeUnit unit);//设置等待时间
+    * bool reentrantLock.tryLock();//尝试获取锁，若获取不到则直接返回false
+    * ReentrantLock lock = new ReentrantLock(true);//创建公平锁
+    * void reentraintLock.unlock();//释放锁
 
