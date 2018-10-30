@@ -184,3 +184,20 @@ t2.start();
     * ReentrantLock lock = new ReentrantLock(true);//创建公平锁
     * void reentraintLock.unlock();//释放锁
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 11ConditionTS<br>
+* 重入锁条件Condition
+    * 通过重入锁的newCondition()方法产生重入锁条件：
+    ```java
+    public static ReentrantLock lock = new ReentrantLock();
+    public static Condition condition = lock.newCondition();
+    ```
+    * condition.await()使当前的线程等待，同时会释放与之绑定的重入锁，而当别的线程调用condition.signal()时，condition.await()内部又会等待获取之前与之绑定的重入锁，所以其他线程在调用condition.signal()后一定要释放重入锁。
+    
+* 方法清单
+    * void await() throw InterruptedException; //设置线程等待，若线程发生中断后会抛出InterruptedException
+    * void awaitUninterruptibly(); //设置线程等待，但是线程发生中断后不会抛出InterruptedException异常
+    * long awaitNanous(long nanosTimeout) throw InterruptedException;//以毫秒为单位设置最长的等待时间
+    * boolean await(long time,TimeUnit unit) throw InterruptedException;//设置等待时间，第一个参数是时间值，第二个参数是时间单位
+    * boolean awaitUntil(Date deadline) throw InterruptedException;//设置等待结束时间点
+    * void signal();//通知等待线程继续执行
+    * void signalAll();//通知所有线程继续执行
