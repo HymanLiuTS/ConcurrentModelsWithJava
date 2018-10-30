@@ -219,4 +219,20 @@ t2.start();
     * void release();//释放信号量准入
 
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 13ReadWriteLockTS<br>
- 
+* UML关系
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/010.jpg"/>
+
+* 读写锁ReentrantReadWriteLock
+    * 读写锁的创建过程：
+    ```java
+    public static ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+    public static Lock readLock = readWriteLock.readLock();
+    public static Lock writeLock = readWriteLock.writeLock();
+    ```
+    * 读与写之间的阻塞关系
+        * 读与写发生阻塞
+        * 写于写发生阻塞
+        * 读余读不发生阻塞
+* 方法清单
+    * void lock();
+    * void unLock();
