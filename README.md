@@ -218,3 +218,5 @@ t2.start();
     * boolean boolean tryAcquire(long timeout,TimeUnit unit);//申请一个信号量准入，设置等待时间，第一个参数是时间值，第二个参数是时间单位
     * void release();//释放信号量准入
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 13ReadWriteLockTS<br>
+ 
