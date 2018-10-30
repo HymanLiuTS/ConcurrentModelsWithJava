@@ -201,3 +201,20 @@ t2.start();
     * boolean awaitUntil(Date deadline) throw InterruptedException;//设置等待结束时间点
     * void signal();//通知等待线程继续执行
     * void signalAll();//通知所有线程继续执行
+
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 12SemaphoreTS<br>
+* 信号量Semaphore
+    * 创建信号量对象时指定最大信准入数：
+    ```java
+    final Semaphore semp = new Semaphore(5);
+    ```
+     
+* 方法清单
+    * Semaphore(int permits); //创建信号量对象，指定最大准入数
+    * Semaphore(int permits,boolean fair); //创建信号量对象，指定最大准入数和指定是否公平
+    * void acquire(); //申请一个信号量准入,可响应线程中断
+    * void acquireUninterruptibly();//申请一个信号量准入，但是不可响应线程中断
+    * boolean tryAcquire();//申请一个信号量准入，并直接返回
+    * boolean boolean tryAcquire(long timeout,TimeUnit unit);//申请一个信号量准入，设置等待时间，第一个参数是时间值，第二个参数是时间单位
+    * void release();//释放信号量准入
+
