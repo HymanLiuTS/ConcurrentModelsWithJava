@@ -1,7 +1,6 @@
 
 public class MainApp {
-	public static ReadWriteLockDemo demo = new ReadWriteLockDemo();
-
+	
 	public static void main(String[] args) {
 		WriteRun wrun = new WriteRun();
 		ReadRun rrun = new ReadRun();

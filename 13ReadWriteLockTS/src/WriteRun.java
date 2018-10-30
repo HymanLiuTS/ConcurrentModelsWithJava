@@ -7,7 +7,7 @@ public class WriteRun implements Runnable {
 		try {
 			int temp = new Random().nextInt();
 			System.out.println("temp= " + temp);
-			MainApp.demo.handleWrite(MainApp.demo.writeLock, temp);
+			ReadWriteLockDemo.demo.handleWrite(ReadWriteLockDemo.demo.writeLock, temp);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
