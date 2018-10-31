@@ -36,7 +36,7 @@ t2.start();
 　　调用该方法后，所在线程会发生等待,并加入该object的线程等待队列。<br>
 * Object.notify()<br>
  　　调用该方法后，通知所有object等待队列的线程，随机选择一个线程，退出等待状态。
-* UML关系
+* UML类图
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/002.jpg"/>
 
 * 注意
@@ -51,7 +51,7 @@ t2.start();
 4. long System.currentTimeMillis();//获取当前的时间戳的毫秒数
 
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 03BadSuspendTS<br>
-* UML关系
+* UML类图
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/003.jpg"/>
 
 * void Thread.suspend()
@@ -67,7 +67,7 @@ t2.start();
     * void resume();
 
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 04JoinYieldTS<br>
-* UML关系
+* UML类图
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/004.jpg"/>
 
 * thread.join()  
@@ -86,7 +86,7 @@ t2.start();
   ```
 
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 06ThreadGroupTS<br>
-* UML关系
+* UML类图
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/005.jpg"/>
 
 * 线程组<br>
@@ -99,7 +99,7 @@ t2.start();
     * ThreadGroup.list(); //打印出线程组和其包含的所有的线程的信息
     
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 07DeamonTS<br>
-* UML关系
+* UML类图
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/006.jpg"/>
 
 * 线程分类
@@ -115,7 +115,7 @@ t2.start();
     * thread.setDemaon(Boolean)
     
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 08PriorityTS<br>
-* UML关系
+* UML类图
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/007.jpg"/>
 
 * 线程优先级
@@ -128,7 +128,7 @@ t2.start();
     * Thread.setPriority(int);//参数的数字越高，优先级越高。
 
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 09SynchronizedTS<br>
-* UML关系
+* UML类图
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/008.jpg"/>
 
 * synchronized<br>
@@ -219,7 +219,7 @@ t2.start();
     * void release();//释放信号量准入
 
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 13ReadWriteLockTS<br>
-* UML关系
+* UML类图
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/010.jpg"/>
 
 * 读写锁ReentrantReadWriteLock
@@ -236,3 +236,22 @@ t2.start();
 * 方法清单
     * void lock();
     * void unLock();
+
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 14CountDownLatchTS<br>
+* UML序列图
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/011.jpg"/>
+
+* 倒计时器CountDownLatch
+    * CountDownLatch主要用来使线程等待，直到倒计时结束。
+    * 创建倒计时器：
+    ```java
+    CountDownLatch latch = new CountDownLatch(10);
+    ```
+    * 倒计时器倒计1：
+    ```java
+    latch.countDown();
+    ```
+    * 倒计时器等待
+    ```java
+    latch.await();
+    ```
