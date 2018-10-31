@@ -255,3 +255,38 @@ t2.start();
     ```java
     latch.await();
     ```
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 15CyclicBarrierTS<br>
+
+* UML类图
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/012.jpg"/>
+
+* UML序列图
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/013.jpg"/>
+
+* 循环栅栏CyclicBarrier
+    * 创建循环栅栏时会指定计数器数值和计数结束后需要执行的Runnable接口的实现对象，如下创建一个CyclicBarrier，计数器为10，计数结束后执行CyclicBarrierRun对象的run()方法。
+    ```java
+    CyclicBarrier barrier = new CyclicBarrier(10,new CyclicBarrierRun(flag));
+    ```
+    * 调用barrier.await()时，调用的线程发生阻塞，并且计数器减1，直到所有的线程调用完了barrier.await()，计数器变成0后线程继续执行。
+    * 计数器归零后，还可以重复使用循环栅栏，如下，使用了两次循环栅栏：
+    ```java
+    @Override
+	public void run() {
+		try {
+			barrier.await();
+			dowork();
+			barrier.await();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BrokenBarrierException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+    ```
+* 方法清单
+    * CyclicBarrier(int parties, Runnable barrierAction);//创建CyclicBarrier对象，指定最大计数器数以及计数器归零后需要执行的Runnable实现对象。
+    * void await();//阻塞线程并开始等待CyclicBarrier的计数器归零
