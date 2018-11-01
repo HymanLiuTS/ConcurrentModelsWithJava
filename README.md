@@ -297,7 +297,7 @@ t2.start();
  <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/014.jpg"/>
 
 * 线程阻塞工具LockSupport
-    * LockSupport调用静态方法park()使当前线程阻塞，调用静态方法unpark(Thread t)使得当前线程技术状态。
+    * LockSupport调用静态方法park()使当前线程阻塞，调用静态方法unpark(Thread t)使得当前线程阻塞状态。
     * 与thread.suspend()和thread.resume()相比，LockSupport不存在先unpart()，再进行park(）出现的线程死锁的问题。
     * 与object.wait()相比，LockSupport在进行park()时，不需要先获取对象锁，也就是不必须在synchronized语句块里面。
     * 调用LockSupport.park()，线程处于阻塞状态时可以相应线程中断，但是此时park()不会抛出InterruptedException，而是直接返回。
