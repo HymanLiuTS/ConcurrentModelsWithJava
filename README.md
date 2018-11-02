@@ -308,6 +308,23 @@ t2.start();
     * static LockSupport.parkUntil(long deadline);//阻塞当前的线程并以unix时间戳设置截至时间
     * static LockSupport.unpark(Thread t);//结束线程t的阻塞状态
  
+ ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 17ThreadPoolTS<br>
+ ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 18ThreadPoolTS2<br>
  
+ * Excutors相关静态关系图
+  <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/015.jpg"/>
  
- 
+ * 线程池
+     * 线程虽然是一个轻量级的工具，但是它也要占用内存空间，大量的线程会抢占宝贵的内存资源。
+     * 线程池对线程进行集中管理，使用线程池后创建线程变成从线程池获得空闲线程，关闭线程变成向支持归还线程。
+     * 获取线程池服务的五个接口：
+         * public static ExecutorService Executors.newFixedThreadPool(int nThreads);//获取含有一个固定含有nThreads个线程的线程池
+         * public static ExecutorService Executor.newSingleThreadExecutor();//获取一个只含有一个线程的线程池
+         * public static ExecutorService Executor.newCachedThreadPool();//获取一个含有动态数量个线程的线程池
+         * public static ScheduledExecutorService Executors.newSingleThreadSchduledExecutor();//获取一个只含有一个线程的计划任务池
+         * public static ScheduledExecutorService Executors.newScheduledThreadPool(int nThreads);//获取一个含有动态个数个计划任务的线程池
+* 计划任务ScheduledExecutorService
+    * 计划任务不同于线程，它可以执行不同的接口，设置不同的执行计划，按照计划永远执行下去（除非遇到了线程中断或者异常）
+        * public ScheduledFuture ScheduledExecutorService.schedule(Runnable command,long delay,TimeUnit unit);//设置按照delay延时执行
+        * public ScheduledFuture ScheduledExecutorService.sheduleAtFixedRate(Runnable command,long initialDelay,long period,TimeUnit unit);//设置起始延迟initialDelay，然后以开始时间点为基准每period执行一次线程函数
+        * public ScheduledFuture scheduleAtFixedDelay(Runnable command,long initialDelay,long delay,TimeUnit unit);//设置起始延迟initialDelay，然后然后以上次任务的结束时间到这次任务的开始时间间隔为delay继续执行
