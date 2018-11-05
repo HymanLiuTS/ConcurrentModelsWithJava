@@ -328,3 +328,36 @@ t2.start();
         * public ScheduledFuture ScheduledExecutorService.schedule(Runnable command,long delay,TimeUnit unit);//设置按照delay延时执行
         * public ScheduledFuture ScheduledExecutorService.sheduleAtFixedRate(Runnable command,long initialDelay,long period,TimeUnit unit);//设置起始延迟initialDelay，然后以开始时间点为基准每period执行一次线程函数
         * public ScheduledFuture scheduleAtFixedDelay(Runnable command,long initialDelay,long delay,TimeUnit unit);//设置起始延迟initialDelay，然后然后以上次任务的结束时间到这次任务的开始时间间隔为delay继续执行
+
+* 线程池的内部实现<br>
+　　上述前三种创建线程池的接口中，每一个内部其实都调用了ThreadPoolExexutor的方法，最后都是返回了一个ThreadPoolExecutor对象，其构造函数如下：
+  ```java
+  public ThreadPoolExecutor(
+  int corePoolSize,
+  int maximumPoolSize,
+  long keepAliveTime,
+  TimeUnit unit,
+  BlockingQueue<Runnable> workQueue,
+  ThreadFactory threadFactory,
+  RejectedExecutionHandler handler
+  );
+  ```
+    * corePoolSize： 指定了线程池中线程数量
+    * maximumPoolSize：指定了线程中最大线程数量
+    * keepAliveTime：当线程数量超过corePoolSize时，多余线程的存活时间
+    * unit：指定上述时间的单位
+    * workQueue：任务队列
+    * threadFactory：线程工程，用来创建线程
+    * handler：拒绝策略，当任务太多来不及处理，如何拒绝任务
+
+* 任务队列
+    * 直接提交的队列SynchronousQueue<br>
+    该队列没有容量，每提交一个任务就会创建一个线程去执行该任务，直到线程数量达到maximumPoolSize时执行拒绝策略。newCachedThreadPool()就是采用的该种任务队列，所以动态的创建线程。
+    * 有界的任务队列ArrayBlockQueue(int capacity)<br>
+    该队列创建一个有固定大小的任务队列。当有新的任务提交时，如果线程池的实际线程数小于corePoolSize，则创建线程执行任务；如果线程池的实际线程数等于corePoolSize，则将任务放进任务队列。如果任务队列满了之后，则创建新的线程执行任务。
+    * 无界的任务队列LinkedBlockingQueue<br>
+    该队列创建一个无固定大小的任务队列。当有新的任务提交时，如果线程池的实际线程数小于corePoolSize，则创建线程执行任务；如果线程池的实际线程数等于corePoolSize，则将任务放进任务队列，而且该任务队列永远不会满。ewSingleThreadExecutor()和newFixedThreadPool(int nThreads)创建的都是该类型的队列。
+    * 优先任务队列PropertyBlockingQueue<br>
+    该队列创建一个有限队列，可以根据任务的优先级顺序先后执行任务。
+    
+    
