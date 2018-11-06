@@ -385,4 +385,23 @@ t2.start();
 				new MyRejectedExecutionHandler());
 ```
  
-    
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 20ThreadFactoryTS<br>
+
+* UML类图
+ <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/017.jpg"/>
+ 
+ * 自定义线程工程<br>
+    自定义线程工厂，需要实现ThreadFactory接口，并实现其newThread(Runnable r)方法，在该方法中可以设置线程的一些属性或者进行其它操作，比如设置线程为守护线程或者打印线程信息等等：
+```java
+public class MyThreadFactory implements ThreadFactory {
+
+	@Override
+	public Thread newThread(Runnable r) {
+		Thread t = new Thread(r);
+		t.setDaemon(true);
+		System.out.println("Create " + t);
+		return t;
+	}
+
+}
+```
