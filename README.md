@@ -384,7 +384,12 @@ t2.start();
 				new ArrayBlockingQueue<Runnable>(10), Executors.defaultThreadFactory(),
 				new MyRejectedExecutionHandler());
 ```
- 
+* 内置的拒绝策略：
+    * AbortPolicy策略，该策略直接抛出异常，组织系统正常工作。
+    * CallerRunsPolicy策略，只要线程池未关闭，该策略直接在调用者线程中，运行当前被丢弃的任务。
+    * DiscardOledesPolicy策略，该策略丢弃最老的一个请求，也就是即将被执行的一个任务。
+    * DiscardPolicy策略，该策略丢弃一个任务，不做任何处理。
+    
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 20ThreadFactoryTS<br>
 
 * UML类图
