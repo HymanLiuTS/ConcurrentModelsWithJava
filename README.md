@@ -364,7 +364,7 @@ t2.start();
  <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/016.jpg"/>
 * 自定义拒绝策略
     自定义拒绝策略需要实现RejectedExecutionHandler接口，并实现其rejectedExecution方法：
-    ```java
+```java
     public class MyRejectedExecutionHandler implements RejectedExecutionHandler {
 
 	@Override
@@ -373,8 +373,9 @@ t2.start();
 	}
 
 }
-    ```
-    接下来，我们可以在创建线程池时，将上述对象添加到线程池中：
+```
+    
+   接下来，我们可以在创建线程池时，将上述对象添加到线程池中：
     ```java
     	ExecutorService myExecutor = new ThreadPoolExecutor(5, 5, 0L, TimeUnit.MICROSECONDS,
 				new ArrayBlockingQueue<Runnable>(10), Executors.defaultThreadFactory(),
