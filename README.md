@@ -360,9 +360,12 @@ t2.start();
     * 优先任务队列PropertyBlockingQueue<br>
     该队列创建一个有限队列，可以根据任务的优先级顺序先后执行任务。
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 19RejectionTS<br>
+
 * UML序列图
  <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/016.jpg"/>
-* 自定义拒绝策略
+ 
+* 自定义拒绝策略<br>
+
     自定义拒绝策略需要实现RejectedExecutionHandler接口，并实现其rejectedExecution方法：
 ```java
     public class MyRejectedExecutionHandler implements RejectedExecutionHandler {
@@ -376,10 +379,10 @@ t2.start();
 ```
     
    接下来，我们可以在创建线程池时，将上述对象添加到线程池中：
-    ```java
+```java
     	ExecutorService myExecutor = new ThreadPoolExecutor(5, 5, 0L, TimeUnit.MICROSECONDS,
 				new ArrayBlockingQueue<Runnable>(10), Executors.defaultThreadFactory(),
 				new MyRejectedExecutionHandler());
-    ```
+```
  
     
