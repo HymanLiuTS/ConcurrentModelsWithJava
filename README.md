@@ -405,3 +405,46 @@ public class MyThreadFactory implements ThreadFactory {
 
 }
 ```
+
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 21ThreadPoolExecutorTS<br>
+* UML类图
+ <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/018.jpg"/>
+
+* 自定义线程池<br>
+    自定义线程池，需要继承ThreadPoolExecutor接口，该接口包含以下三个方法：
+    * protected void beforeExecute(Thread,Runnable);//在线程池执行一个任务之前调用
+    * protected void afterExecute(Runnable,Throwable);//在线程池执行一个任务之后调用
+    * protected void terminated();//线程池shutdown后调用
+    
+* 示例：
+```java
+public class MyThreadPoolExecutor extends ThreadPoolExecutor {
+
+	public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit,
+			BlockingQueue<Runnable> workQueue) {
+		super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
+	}
+
+	@Override
+	protected void beforeExecute(Thread t, Runnable r) {
+		System.out.println("准备执行: "+((MyTask)r).name);
+	}
+
+	@Override
+	protected void afterExecute(Runnable r, Throwable t) {
+		System.out.println("执行完成: "+((MyTask)r).name);
+	}
+	
+	@Override
+	protected void terminated(){
+		System.out.println("线程池退出");
+	}	
+}
+```
+
+* 方法清单：
+    * protected void threadPoolExecutor.beforeExecute(Thread,Runnable);//在线程池执行一个任务之前调用
+    * protected void threadPoolExecutor.afterExecute(Runnable,Throwable);//在线程池执行一个任务之后调用
+    * protected void threadPoolExecutor.terminated();//线程池shutdown后调用
+    * public void executorService.execute(Runnable r);//执行任务r
+    * public void executorService.shutdown();//关闭线程池
