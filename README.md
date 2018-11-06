@@ -359,6 +359,7 @@ t2.start();
     该队列创建一个无固定大小的任务队列。当有新的任务提交时，如果线程池的实际线程数小于corePoolSize，则创建线程执行任务；如果线程池的实际线程数等于corePoolSize，则将任务放进任务队列，而且该任务队列永远不会满。ewSingleThreadExecutor()和newFixedThreadPool(int nThreads)创建的都是该类型的队列。
     * 优先任务队列PropertyBlockingQueue<br>
     该队列创建一个有限队列，可以根据任务的优先级顺序先后执行任务。
+    
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 19RejectionTS<br>
 
 * UML序列图
