@@ -458,6 +458,7 @@ public class MyThreadPoolExecutor extends ThreadPoolExecutor {
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 22TraceThreadPoolExecutor<br>
 * UML类图
  <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/019.jpg"/>
+ 
 * 方法清单
     * threadPoolExecutor.submit(Ruanable task);//提交任务，如果任务产生异常不打印异常信息到调用堆栈
     * threadPoolExecutor.execute(Runnable task);//提交任务，如果任务产生异常打印异常信息到调用堆栈
