@@ -463,3 +463,28 @@ public class MyThreadPoolExecutor extends ThreadPoolExecutor {
     * threadPoolExecutor.submit(Ruanable task);//提交任务，如果任务产生异常不打印异常信息到调用堆栈
     * threadPoolExecutor.execute(Runnable task);//提交任务，如果任务产生异常打印异常信息到调用堆栈
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 23ForkJoinPoolTS<br>
+* UML类图
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/020.jpg"/>
+ 
+* UML序列图
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/021.jpg"/>
+
+* 分而治之：Fork/Join框架
+    Fork/Join框架主要用来解决处理大量数据的方法，我们可以想ForkJoinPool线程池提交一个ForkJoinTask，该类型的任务支持fork()分解，将大的任务分解的小的子任务进行处理，同时支持join()等待，等待任务结束或者返回数据。ForkJoinTask有两个重要的子类，RecursiveAction和RecursiveTask，分别表示没有返回值的任务和可以携带返回值的任务。
+
+* 方法清单
+    * T recursiveTask.compute();//线程池将调用该接口进行相应处理，有返回值
+    * void recursiveAction.compute();//无返回值的线程处理函数
+    * T recursiveTask.join();//有返回值的线程等待函数
+    * void recursiveAction.join();//无返回值的线程等待函数
+    * void forkJoinTask/recursiveTask/recursiveAction.fork();//分解任务
+    * <T> ForkJoinTask<T> forkJoinPool.submit(ForJoinTask<T> task);//向线程池forkJoinPool中提交任务task
+	
+
+
+
+
+
+
+
