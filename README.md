@@ -505,9 +505,11 @@ public static Map cmap = new ConcurrentHashMap();
 * 高效的读写队列ConcurrentLinkedQueue
     * ConcurrentLinkedQueue是高并发环境中性能最好的队列。
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 24CopyOnWriteArrayListTS<br>
 
-
-
+* 高效读取——不变模式下的CopyOnWriteArrayList
+    * 读取操作不会加锁，写入也不会阻塞读取操作，只有在写与写之间需要进行同步等待。
+    * 在写入操作时，并不会修改原有的内容，而是进行一次自我复制，将修改后的内容写入到副本中，写完之后将修改完的副本替换原来的数据，这样保证写操作不会影响读。
 
 
 
