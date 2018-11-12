@@ -500,7 +500,10 @@ public static Map smap = Collections.synchronizedMap(new HashMap());
 ```java
 public static Map cmap = new ConcurrentHashMap();
 ```
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 24ConcurrentLinkedQueueTS<br>
 
+* 高效的读写队列ConcurrentLinkedQueue
+    * ConcurrentLinkedQueue是高并发环境中性能最好的队列。
 
 
 
