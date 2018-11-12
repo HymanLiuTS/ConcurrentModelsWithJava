@@ -470,7 +470,7 @@ public class MyThreadPoolExecutor extends ThreadPoolExecutor {
 * UML序列图
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/021.jpg"/>
 
-* 分而治之：Fork/Join框架
+* 分而治之：Fork/Join框架<br>
     Fork/Join框架主要用来解决处理大量数据的方法，我们可以想ForkJoinPool线程池提交一个ForkJoinTask，该类型的任务支持fork()分解，将大的任务分解的小的子任务进行处理，同时支持join()等待，等待任务结束或者返回数据。ForkJoinTask有两个重要的子类，RecursiveAction和RecursiveTask，分别表示没有返回值的任务和可以携带返回值的任务。
 
 * 方法清单
@@ -480,6 +480,15 @@ public class MyThreadPoolExecutor extends ThreadPoolExecutor {
     * void recursiveAction.join();//无返回值的线程等待函数
     * void forkJoinTask/recursiveTask/recursiveAction.fork();//分解任务
     * <T> ForkJoinTask<T> forkJoinPool.submit(ForJoinTask<T> task);//向线程池forkJoinPool中提交任务task
+	
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 24BloackingQueueTS<br>
+* BlockingQueue<br>
+　　共享数据通道BlockingQueue解决多线程开发中数据共享的问题，它类似于小区中的邮箱，实现了数据的存储和读取的分离，它提供了相应的接口，在写入时如果空间已满，则进行等待，直到有空间存储为止；在读取时，如果没有元素，则进行等待，直到有元素可读取为止。
+    * BlockingQueue是一个接口，并非一个具体的实现，而其具体的实现有ArrayBlockingQueue和LinkedBlockingQueue等等。
+    * blockingQueue.offer()方法，如果当前队列已经满了，立即返回false；如果没有满，执行正常的入队操作。
+    * blockingQueue.put()方法，将元素压入队列末尾，如果队列满了，它会一直等待。
+    * blockingQueue.poll()方法，它从队列的头部直接获取一个元素，如果队列为空则直接返回null
+    * blockingQueue.take()方法，它从队列的头部获取一个元素，如果队列为空则进行等待
 	
 
 
