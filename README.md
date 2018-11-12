@@ -489,7 +489,18 @@ public class MyThreadPoolExecutor extends ThreadPoolExecutor {
     * blockingQueue.put()方法，将元素压入队列末尾，如果队列满了，它会一直等待。
     * blockingQueue.poll()方法，它从队列的头部直接获取一个元素，如果队列为空则直接返回null
     * blockingQueue.take()方法，它从队列的头部获取一个元素，如果队列为空则进行等待
-	
+
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 24ConcurrentHashMapTS<br>
+* 线程安全的HashMap
+    * 使用Collection.synchronizedMap()对HashMap进行封装：
+```java
+public static Map smap = Collections.synchronizedMap(new HashMap());
+```
+    * 使用ConcurrentHashMap
+```java
+public static Map cmap = new ConcurrentHashMap();
+```
+
 
 
 
