@@ -536,5 +536,22 @@ public static Map cmap = new ConcurrentHashMap();
     * 将对象从ThreadLocal中删除-threadLocal.remove()
 * ThreadLocal实现的原理
 　　每个线程都有一个ThreadLocalMap的映射，threadLocal.set(new SimpleDateFormat())可以将本线程作为key值，封装的对象作为value存入该map中，这样每个线程都具有这个一个局部对象，互相不能访问，保证线程安全。
+  
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 26AtomicIntegerTS<br>
 
-
+* 比较转换CAS算法<br>
+　　CAS算法过程是这样的：它包含三个参数CAS(V,E,N)。V表示要更新的变量，E表示预期的值，N表示新值。仅当v值等于预期值E时才会将V值设为N。
+* 无锁的线程安全整数：AtomicInteger
+    * AtomicInteger的本质就是一个整数，内部使用了CAS算法保证了线程安全。
+    * AtomicInteger主要方法如下：
+        * public final int get()   //取得当前值
+        * public final void set(int newValue) //设置当前值
+        * public final getAndSet(int newValue) //设置新值并返回旧值
+        * public final boolean compareAndSet(int expect,int u)  //如果当前值为expect，则设置为u
+        * public final int getAndIncrement()  //当前值加1，返回旧值
+        * public final int getAndDecrement() //当前值减1，并返回旧值
+        * public final int getAndAdd(int delta) //当前值增加Delta，返回旧值
+        * public final int incrementAndGet()  //当前值加1，返回新值
+        * public final int decrementAndGet()  //当前值减1，返回新值
+        * public finale int addAndGet(int delta) //当前值增加delta，返回新值
+    * 类似AomicInteger，还有类似的类AtomicLong表示Long、AtomicBoolean表示Boolean和AtomicReference表示对象引用。
