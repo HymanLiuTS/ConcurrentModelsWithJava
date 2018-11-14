@@ -524,3 +524,17 @@ public static Map cmap = new ConcurrentHashMap();
     * 使用Collection.synchronizedList()对ArrayList等普通List进行封装：
     * 使用线程安全的Vector  
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 25ThreadLocalTS<br>
+* 线程局部变量ThreadLocal
+    * ThreadLocal是一个线程局部变量，也就是说只有当前线程可以访问。
+    * 创建ThreadLocal对象:
+    ```java
+    public static final ThreadLocal<SimpleDateFormat> tl = new ThreadLocal<SimpleDateFormat>();
+    ```
+    * 获取ThreadLocal中封装的对象-threadLocal.get();
+    * 将对象封装到ThreadLocal中-threadLocal.set(new SimpleDateFormat());
+    * 将对象从ThreadLocal中删除-threadLocal.remove()
+* ThreadLocal实现的原理
+　　每个线程都有一个ThreadLocalMap的映射，threadLocal.set(new SimpleDateFormat())可以将本线程作为key值，封装的对象作为value存入该map中，这样每个线程都具有这个一个局部对象，互相不能访问，保证线程安全。
+
+
