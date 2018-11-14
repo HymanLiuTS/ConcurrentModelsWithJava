@@ -17,6 +17,7 @@ public class ParseDateRun implements Runnable {
 				MainApp.tl.set(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 			Date t = MainApp.tl.get().parse("2015-02-20 19:20:" + i % 60);
 			System.out.println(i + ":" + t);
+			MainApp.tl.remove();
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
