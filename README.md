@@ -564,3 +564,13 @@ public static Map cmap = new ConcurrentHashMap();
         * public native void putInt(Object o,long offset,int x); //设置给定对象偏移量上的int的值
         * public native long objectFieldOffset(Field f); //获得字段在对象中的偏移量
     * Unsafe类是一个JDK内部使用的专属类，我们不能进行使用！
+    
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 27AtomicStampedReferenceTS<br>
+* 带有时间戳的对象引用——AtomicStampedRefereence
+    * AtomicStampedRefereence的提出是为了解决下面这种场景：当使用AtomicReference获得对象当前的数据后，在准备修改成为新值前，对象的值被其它线程连续修改了两次，而经过这两次修改后，对象的值又成为了旧值。
+    * AtomicStampedRefereence的常用方法：
+        * public boolean compareAndSet(V expectedReference,V newReference,int expectedStamp,int new stamp);//比较设置，参数依次是期望值、写入新值、期望时间戳、新时间戳
+        * public V getReference(); //获取当前对象引用
+        * public int getStamp(); //获取当前时间戳
+        * public void set(V newReference,int newStamp); //设置当前对象引用和时间戳
+
