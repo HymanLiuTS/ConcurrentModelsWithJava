@@ -555,3 +555,12 @@ public static Map cmap = new ConcurrentHashMap();
         * public final int decrementAndGet()  //当前值减1，返回新值
         * public finale int addAndGet(int delta) //当前值增加delta，返回新值
     * 类似AomicInteger，还有类似的类AtomicLong表示Long、AtomicBoolean表示Boolean和AtomicReference表示对象引用。
+    
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) Unsafe类<br>
+* Java中的指针：Unsafe类
+    * Unsafe类封装了一些指针的操作，它常见的方法如下：
+        * public final native boolean compareAndSwapInt(Object o,long offset,int expected,int x);//o是给定的对象，offset是字段到对象头部的偏移量，expected表示期望值，x表示要设置的值。改方法内部利用比较转换算法设置对象o的某个字段。
+        * public native int getInt(Object o,long offset); //获取给定对象偏移量上int的值
+        * public native void putInt(Object o,long offset,int x); //设置给定对象偏移量上的int的值
+        * public native long objectFieldOffset(Field f); //获得字段在对象中的偏移量
+    * Unsafe类是一个JDK内部使用的专属类，我们不能进行使用！
