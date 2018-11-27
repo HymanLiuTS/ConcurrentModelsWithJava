@@ -573,7 +573,20 @@ public static Map cmap = new ConcurrentHashMap();
         * public V getReference(); //获取当前对象引用
         * public int getStamp(); //获取当前时间戳
         * public void set(V newReference,int newStamp); //设置当前对象引用和时间戳
+	
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 28AtomicIntegerArray<br>
+* 无锁数组AtomicIntegerArray方法列表
+    * public final int get(int i); //获取数组第i个下标的元素
+    * public final int length(); //获取数组的长度
+    * public final int getAndSet(int i,int newValue); //将数组的第i个下标设置为newValue，并返回旧的值
+    * public final boolean compareAndSet(int i,int expect,int update); //利用CAS操作更新值，成功返回ture，失败返回false
+    * public final int getAndIncrement(int i);//第i个下标的元素加1
+    * public final int getAndDecrement(int i);//第i个小标的元素减1
+    * public final int getAndAdd(int i,int delta);//将第i个下标的元素增加delta
+* 其它无锁数组
+    * AtomicLongArray
+    * AtomicReferenceArray
 
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 30LockFreeVector<br>
 使用无锁实现的Vector<br>
-<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/023.png"/>
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/023.jpg"/>
