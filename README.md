@@ -586,6 +586,24 @@ public static Map cmap = new ConcurrentHashMap();
 * 其它无锁数组
     * AtomicLongArray
     * AtomicReferenceArray
+    
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 29AtomicFieldIntegerUpdaterTS<br>
+* 利用CAS算法更新对象的字段
+    * 创建Updater对象：
+    ```java
+    public final static AtomicIntegerFieldUpdater<Candidate> scoreUpdate = AtomicIntegerFieldUpdater
+			.newUpdater(Candidate.class, "score");
+    ```
+    * 对对象stu的score字段加1并返回最新值
+    ```java
+    scoreUpdate.incrementAndGet(stu);
+    ```
+    * Updater只能修改其可见的变量，因为其利用反射得到这个变量。如果变量为private则修改失败。
+    * 要修改的变量必须时volatile类型的。
+    * 不支持static变量的修改
+* 其它updater
+    * AtomicFieldLongUpdater
+    * AtomicFieldReferenceUpdater
 
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 30LockFreeVector<br>
 使用无锁实现的Vector<br>
