@@ -574,3 +574,6 @@ public static Map cmap = new ConcurrentHashMap();
         * public int getStamp(); //获取当前时间戳
         * public void set(V newReference,int newStamp); //设置当前对象引用和时间戳
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 30LockFreeVector<br>
+使用无锁实现的Vector<br>
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/023.png"/>
