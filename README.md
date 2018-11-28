@@ -627,4 +627,40 @@ public class StaticSingleton {
 
 }
 ```
-使用上述方法创建的单例模式,巧妙的利用了内部类和类的初始化方式，使得只有在getInstance()方法第一次被调用时StaticSingleton实例才会被创建。
+单例模式：使用上述方法创建的单例模式,巧妙的利用了内部类和类的初始化方式，使得只有在getInstance()方法第一次被调用时StaticSingleton实例才会被创建。
+
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 32ImmutableTS<br>
+```java
+public final class Product { // 确保无子类
+
+	private final String no; //私用属性不会被其它对象获取，final关键字保证属性不会二次赋值
+
+	private final String name;
+
+	private final double price;
+
+	public Product(String no, String name, double price) {
+		super();
+		this.no = no;
+		this.name = name;
+		this.price = price;
+	}
+	public String getNo() {
+		return no;
+	}
+	public String getName() {
+		return name;
+	}
+	public double getPrice() {
+		return price;
+	}
+}
+```
+不变模式：
+    * 不变模式的对象被创建后，其内部状态和数据不再发生任何变化。
+    * 不变模式的对象在多线程访问中，所有实例的方法均不需要进行同步操作，从而保证了它的性能。
+    * 不变模式的类应该包含可以创建完整对象的构造函数。
+    * 不变模式的类通过使用final关键字，从而保证没有子类可以继承它并重载它行为。
+    * 不变模式的类去除了setter以及所有可以修改自身属性的方法。
+    * JDK中String、Boolean、Double等类都使用了不变模式，以String类为例，其不变模式的含义是其内部用来存放字符的数组引用位置不变，并不是指数组中内容不变；而对于同一个字符串"hello world"，不同的变量都赋予该值时，实际上所有的变量都指向了改字符串在内存中的位置，从而提高了性能。
+    * 不变模式唯一的缺点是：一旦需要修改一个不变对象的状态，就只好创建一个新的同类对象。在需要频繁修改不变对象的环境里，会有大量的不变对象作为中间结果被创建出来，再被JAVA垃圾收集器收集走。这是一种资源上的浪费。
