@@ -608,3 +608,23 @@ public static Map cmap = new ConcurrentHashMap();
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 30LockFreeVector<br>
 使用无锁实现的Vector<br>
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/023.jpg"/>
+
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 31StaticSingletonTS<br>
+```java
+public class StaticSingleton {
+
+	private StaticSingleton() {
+
+	}
+
+	private static class SingletonHolder {
+		private static StaticSingleton instance = new StaticSingleton();
+	}
+
+	public static StaticSingleton getInstance() {
+		return SingletonHolder.instance;
+	}
+
+}
+```
+使用上述方法创建的单例模式,巧妙的利用了内部类和类的初始化方式，使得只有在getInstance()方法第一次被调用时StaticSingleton实例才会被创建。
