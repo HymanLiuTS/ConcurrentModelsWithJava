@@ -666,5 +666,5 @@ public final class Product { // 确保无子类
     * 不变模式唯一的缺点是：一旦需要修改一个不变对象的状态，就只好创建一个新的同类对象。在需要频繁修改不变对象的环境里，会有大量的不变对象作为中间结果被创建出来，再被JAVA垃圾收集器收集走。这是一种资源上的浪费。
     
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 33ProducerAndConsumeTS<br>
-生产者消费者模式类图：
+生产者消费者模式类图<br>：
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/024.jpg"/>
