@@ -664,3 +664,7 @@ public final class Product { // 确保无子类
     * 不变模式的类去除了setter以及所有可以修改自身属性的方法。
     * JDK中String、Boolean、Double等类都使用了不变模式，以String类为例，其不变模式的含义是其内部用来存放字符的数组引用位置不变，并不是指数组中内容不变；而对于同一个字符串"hello world"，不同的变量都赋予该值时，实际上所有的变量都指向了改字符串在内存中的位置，从而提高了性能。
     * 不变模式唯一的缺点是：一旦需要修改一个不变对象的状态，就只好创建一个新的同类对象。在需要频繁修改不变对象的环境里，会有大量的不变对象作为中间结果被创建出来，再被JAVA垃圾收集器收集走。这是一种资源上的浪费。
+    
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 33ProducerAndConsumeTS<br>
+生产者消费者模式类图：
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/024.jpg"/>
