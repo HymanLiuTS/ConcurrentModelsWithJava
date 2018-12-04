@@ -666,5 +666,30 @@ public final class Product { // 确保无子类
     * 不变模式唯一的缺点是：一旦需要修改一个不变对象的状态，就只好创建一个新的同类对象。在需要频繁修改不变对象的环境里，会有大量的不变对象作为中间结果被创建出来，再被JAVA垃圾收集器收集走。这是一种资源上的浪费。
     
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 33ProducerAndConsumeTS<br>
-生产者消费者模式类图<br>：
+生产者消费者模式类图：<br>
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/024.jpg"/>
+
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 34DisruptorTS<br>
+* 无锁的缓存框架Disruptor
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/025.jpg"/>
+
+    * Disruptor使用无锁的方式实现了一个环形队列，每一个Disruptor对象都有这样一个队列。
+    * Disruptor环形队列的大小必须提前指定，不能动态扩展，并要求将该队列的大小设置为2的整数次方。
+    * 创建Disruptor对象的方法：<br>
+    ```java
+    Executor executor = Executors.newCachedThreadPool();
+		PCDataFactory factory = new PCDataFactory();
+		int bufferSize = 1024;
+		Disruptor<PCData> disruptor = new Disruptor<PCData>(factory, bufferSize, executor, ProducerType.MULTI,
+				new BlockingWaitStrategy());
+    
+    ```
+        * factory -- 用来创建环形队列存储单位的工厂
+	* executor -- 线程池，用来创建消费者的处理线程
+	* bufferSize -- 环形队列初始大小
+	* BlockingWaitStrategy -- 等待策略
+
+
+
+
+
