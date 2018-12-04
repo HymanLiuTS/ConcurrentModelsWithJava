@@ -688,10 +688,11 @@ public final class Product { // 确保无子类
     
     ```
         
-    * factory -- 用来创建环形队列存储单位的工厂
-    * executor -- 线程池，用来创建消费者的处理线程
-    * bufferSize -- 环形队列初始大小
-    * BlockingWaitStrategy -- 等待策略
+        
+        * factory -- 用来创建环形队列存储单位的工厂
+        * executor -- 线程池，用来创建消费者的处理线程
+        * bufferSize -- 环形队列初始大小
+        * BlockingWaitStrategy -- 等待策略
 
 
 
