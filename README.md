@@ -726,6 +726,8 @@ Producer producer = new Producer(ringBuffer);
         * YieldingWaitStrategy -- 消费者线程会不断的循环监控缓冲区变化，在循环内部它会使用Thread.yield()，让出CPU给别的线程，该策略适合于低延时的场合。
         * BusySpinWaitStrategy -- 它就是一个死循环，消费者线程会尽最大的努力监控缓冲区的变化，它会吃掉CPU的资源，只有在延时要求非常苛刻的场合下使用。
   
-
+* 伪共享
+　　什么是伪共享问题呢？我们知道为了提高CPU的速度CPU有一个高速缓存cache，在高速缓存中，读写数据的最小单位是缓存行，它是从内存复制到缓存cache中的最小单位，一般为32到128字节。如果两个变量在同一个缓存行中，在多线程访问时，一个线程所在的CPU修改了其中一个变量，就会造成另外一个线程所在的CPU缓存行无效，就要重新载入缓存行，这就造成了性能上的问题，这就是伪共享问题。如下所示：
+  <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/026.jpg"/>
 
 
