@@ -710,12 +710,19 @@ public class Consumer implements WorkHandler<PCData> {
 }
 
 ```
+
     * 创建生产者的方法：
+    
 ```java
 RingBuffer<PCData> ringBuffer = disruptor.getRingBuffer();
 Producer producer = new Producer(ringBuffer);
 ```
 　　对生产者没有接口上的要求，但是需要有一个环形变量RingBuffer成员，通过依赖注入的方式创建。
+    * 等待策略
+        * BlockingWaitStrategy -- 默认策略，使用锁和条件进行数据的监控和线程的唤醒。因为涉及到线程的切换，该策略最节省CPU，但是在高并发下性能表现最糟糕的。
+        * SleepingWaitStrategy -- 它先进行自旋等待，如果不成功，则使用Thread.yield()让出CPU，并最终使用LockSupport.parkNanos(1)进行线程休眠，该策略对于数据处理会产生比较高的平均延时，适合对延时要求不是很高的场合。
+        * YieldingWaitStrategy -- 消费者线程会不断的循环监控缓冲区变化，在循环内部它会使用Thread.yield()，让出CPU给别的线程，该策略适合于低延时的场合。
+        * BusySpinWaitStrategy -- 它就是一个死循环，消费者线程会尽最大的努力监控缓冲区的变化，它会吃掉CPU的资源，只有在延时要求非常苛刻的场合下使用。
   
 
 
