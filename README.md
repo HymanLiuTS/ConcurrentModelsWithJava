@@ -689,12 +689,34 @@ public final class Product { // 确保无子类
     ```
         
         
-        * factory -- 用来创建环形队列存储单位的工厂
+        * factory -- 用来创建环形队列存储单位的工厂,工厂类需要实现EventFactory接口
         * executor -- 线程池，用来创建消费者的处理线程
         * bufferSize -- 环形队列初始大小
         * BlockingWaitStrategy -- 等待策略
+    * 提交消费者的方法：
+```java
+disruptor.handleEventsWithWorkerPool(new Consumer(), new Consumer(), new Consumer(), new Consumer());
+disruptor.start();
+```
+　　消费者必须实现WorkHandler接口，该接口有一个onEvent方法，为消费者处理数据的回调方法：
+```java
+public class Consumer implements WorkHandler<PCData> {
 
+	public void onEvent(PCData event) throws Exception {
+		System.out.println(Thread.currentThread().getId() + ":Event:--" + event.getValue() * event.getValue() + "--");
 
+	}
+
+}
+
+```
+    * 创建生产者的方法：
+```java
+RingBuffer<PCData> ringBuffer = disruptor.getRingBuffer();
+Producer producer = new Producer(ringBuffer);
+```
+　　对生产者没有接口上的要求，但是需要有一个环形变量RingBuffer成员，通过依赖注入的方式创建。
+  
 
 
 
