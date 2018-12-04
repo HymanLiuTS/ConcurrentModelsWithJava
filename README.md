@@ -670,9 +670,12 @@ public final class Product { // 确保无子类
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/024.jpg"/>
 
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 34DisruptorTS<br>
-* 无锁的缓存框架Disruptor
+
+* Disruptor使用模型静态图
+
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/025.jpg"/>
 
+* 无锁的缓存框架Disruptor
     * Disruptor使用无锁的方式实现了一个环形队列，每一个Disruptor对象都有这样一个队列。
     * Disruptor环形队列的大小必须提前指定，不能动态扩展，并要求将该队列的大小设置为2的整数次方。
     * 创建Disruptor对象的方法：<br>
