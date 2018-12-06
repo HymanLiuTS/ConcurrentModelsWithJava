@@ -746,9 +746,9 @@ public final static class VolatileLong{
 　　我们在调用某方法时，有时候并不急着要结果，因此我们可以让被调用者立即返回，让它在后台慢慢处理这个请求，对于调用者来说，则可以先处理一些其它任务，这就是Future模式。
   
 * Future模式序列图
-<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/027.jpg"/>
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/028.jpg"/>
 
 * Future模式静态图
-<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/028.jpg"/>
+<img width="380" height="300" src="http://www.codenest.cn/static/images/uml/027.jpg"/>
 
 
