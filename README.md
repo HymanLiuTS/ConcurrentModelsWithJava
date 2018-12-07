@@ -751,4 +751,37 @@ public final static class VolatileLong{
 * Future模式静态图
 <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/027.jpg"/>
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 36JDKFutureTS<br>
+* JDK中的Future模式
+　　使用JDK的Future模式时，构造的真实数据必须继承Callable接口，该接口有一个call()方法，该方法会构造我们需要的真实数据并返回：
+```java
+public class RealData implements Callable<String> {
+	private String para;
+	public RealData(String para) {
+		this.para = para;
+	}
+	@Override
+	public String call() throws Exception {
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < 10; i++) {
+			sb.append(para);
+			Thread.sleep(100);
+		}
+		return sb.toString();
+	}
+}
+```
+　　FutureTask的构造函数需要传入Callable的实现，也就是我们定义的真实数据RealData对象，使用线程池时传入我们创建的FutureTask，再通过该FutureTask对象获取RealData对象call方法返回的结果。
+```java
+FutureTask<String> future = new FutureTask<String>(new RealData("a"));
+ExecutorService executor = Executors.newFixedThreadPool(1);
+executor.submit(future);
+```
+
+　　FutureTask的可用接口<br>:
+ 1、V futureTask.get(); //获取RealData中call()的返回结果。<br>
+ 2、boolean cancle(boolean mayInterruptIfRunning);//取消任务<br>
+ 3、boolean isCancled();//是否已经取消任务<br>
+ 4、boolean isDone();//是否已经完成<br>
+ 5、V get(long timeout,TimeUnit unit);//获取RealData中call()的返回结果,可以设置超时时间<br>
 
