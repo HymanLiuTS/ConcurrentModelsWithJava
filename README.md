@@ -778,7 +778,7 @@ ExecutorService executor = Executors.newFixedThreadPool(1);
 executor.submit(future);
 ```
 
-　　FutureTask的可用接口<br>:
+　　FutureTask的可用接口：<br>
  1、V futureTask.get(); //获取RealData中call()的返回结果。<br>
  2、boolean cancle(boolean mayInterruptIfRunning);//取消任务<br>
  3、boolean isCancled();//是否已经取消任务<br>
