@@ -812,5 +812,5 @@ executor.submit(future);
     * NIO的使用模型如下：<br>
     <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/029.jpg"/>
 　　从上面的模型图中我们看到，另外几个重要的组件Selector（选择器）、SelectionKey。每个Channel都可以把自己注册进一个Selector，并产生一个SelectionKey对象。Selector负责管理各个Channel，它的selectedKeys()方法可以获取到所有发生了IO事件的SelectionKey集合，遍历这个集合，并通过SelectionKey可以判断是发生了何种类型的IO事件，是Accept、Read、Write？然后通过该SelectionKey获取到相应的channel，进行相应的IO操作。<br>
-```NIO类图<br>```
+```NIO类图```<br>
      <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/030.jpg"/>
