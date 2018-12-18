@@ -805,3 +805,12 @@ executor.submit(future);
     * 希尔排序的原型是插入排序，插入排序的原理是从数组的第二个元素a开始，依次和前一个元素b比较，一旦发现该b元素比a大，b元素们依次向后依次挪一位，直到找到比a元素小的元素为止。因为是从第二个元素开始排序的，所以a元素的左边永远是拍好序的。
     * 希尔排序是插入排序的拓展版本，它将待排序数组分成h份，每次排序时，分别排序0，0+h,0+2h...;1,1+h,1+2h...;h-1,h-1+h,h-1+2h...;位置上的元素。h是个循环变量，范围可从数组长度或者指定长度到1，当h=1时相当于依次插入排序。
     * 并行的希尔排序相当于将上述比较的过程放到了子线程中，并行的希尔排序效率比并行的奇偶排序高很多。
+    
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 43NIOEchoServer<br>
+* NIO(New IO)<br>
+    * 使用NIO相对于传统的IO，可以将网络IO的等待时间从业务处理线程种抽取出来，在NIO中有一个关键组件Channel，一个Channel可以和文件或者网络Socket对应，网这个Channel中写数据，就相当于向文件或者Socket中写数据。
+    * NIO的使用模型如下：<br>
+    <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/029.jpg"/>
+　　从上面的模型图中我们看到，另外几个重要的组件Selector（选择器）、SelectionKey。每个Channel都可以把自己注册进一个Selector，并产生一个SelectionKey对象。Selector负责管理各个Channel，它的selectedKeys()方法可以获取到所有发生了IO事件的SelectionKey集合，遍历这个集合，并通过SelectionKey可以判断是发生了何种类型的IO事件，是Accept、Read、Write？然后通过该SelectionKey获取到相应的channel，进行相应的IO操作。<br>
+```NIO类图<br>```
+     <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/030.jpg"/>
