@@ -814,3 +814,17 @@ executor.submit(future);
 　　从上面的模型图中我们看到，另外几个重要的组件Selector（选择器）、SelectionKey。每个Channel都可以把自己注册进一个Selector，并产生一个SelectionKey对象。Selector负责管理各个Channel，它的selectedKeys()方法可以获取到所有发生了IO事件的SelectionKey集合，遍历这个集合，并通过SelectionKey可以判断是发生了何种类型的IO事件，是Accept、Read、Write？然后通过该SelectionKey获取到相应的channel，进行相应的IO操作。<br>
 ```NIO类图```<br>
      <img width="380" height="300" src="http://www.codenest.cn/static/images/uml/030.jpg"/>
+
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 44AIOEchoServer<br>
+* 异步IO（Asynchronous IO）
+    * 异步IO通过异步通道AsynchronousServerSocketChannel和AsynchronousSocketChannel实现IO操作。
+    * AsynchronousServerSocketChannel和AsynchronousSocketChannel的accept、connect、write、read函数都是异步的，函数的最后一个参数是定义的一个回调函数类型CompletionHandler，当完成上述IO操作时就会调用该回调函数类型对象。
+    * write、read函数返回值为Future类型，直接返回后，可以调用futrue.get()获取返回结果，此时线程会阻塞。
+    * 异步IO的方法清单如下：
+        * public static AsynchronousSocketChannel open()//打开异步IO对象
+        * public final AsynchronousServerSocketChannel bind(SocketAddress local)//绑定IP地址
+        *  public abstract <A> void accept(A attachment,CompletionHandler<AsynchronousSocketChannel,? super A> handler)//接受客户端连接并定义回调函数对象
+        * public abstract <A> void connect(SocketAddress remote,A attachment,CompletionHandler<Void,? super A> handler)//连接服务端并定义回调函数对象
+        * public final <A> void read(ByteBuffer dst,A attachment,CompletionHandler<Integer,? super A> handler)//读取IO数据并定义回调函数对象
+        * public final <A> void write(ByteBuffer src,A attachment,CompletionHandler<Integer,? super A> handler)//写入IO数据并定义回调函数对象
+    
