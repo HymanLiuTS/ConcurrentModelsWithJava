@@ -827,4 +827,37 @@ executor.submit(future);
         * public abstract <A> void connect(SocketAddress remote,A attachment,CompletionHandler<Void,? super A> handler)//连接服务端并定义回调函数对象
         * public final <A> void read(ByteBuffer dst,A attachment,CompletionHandler<Integer,? super A> handler)//读取IO数据并定义回调函数对象
         * public final <A> void write(ByteBuffer src,A attachment,CompletionHandler<Integer,? super A> handler)//写入IO数据并定义回调函数对象
-    
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 45ParalStreamTS<br>  
+* Arrays的并行操作<br>
+在java8之后Arrays提供了许多并行方式的操作，犹如排序或者赋值，保证我们在使用时可以利用并行，最大限度的提高性能：
+```java
+	public static void main(String[] args) {
+		int[] arr=new int[10000];
+		Arrays.parallelSort(arr);//并行排序
+		Random random=new Random();
+		Arrays.parallelSetAll(arr, (i)->i=random.nextInt());//并行赋值
+	}
+```
+* 流Stream的并行<br>
+我们也可以对Stream相关操作进行并行，只需调用其parallel()方法即可，如下演示了在普通模式和并行模式下进行数据过滤的方法：
+```java
+public class PrimeUtil {
+
+	public static boolean isPrime(int number) {
+		int tmp = number;
+		if (tmp < 2)
+			return false;
+		for (int i = 2; Math.sqrt(tmp) >= i; i++) {
+			if (tmp % i == 0)
+				return false;
+		}
+		return true;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(IntStream.range(1, 10000).filter(PrimeUtil::isPrime).count());//´®ÐÐÁ÷
+		System.out.println(IntStream.range(1, 10000).parallel().filter(PrimeUtil::isPrime).count());//²¢ÐÐÁ÷
+	}
+
+}
+```
