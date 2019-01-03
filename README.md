@@ -947,7 +947,7 @@ CompletableFuture<Object> fu=CompletableFuture.supplyAsync(()->calc(50))
 　　也可以使用thenCombine将两个CompletableFuture的结果作为参数传给第三个CompletableFuture：
 ```java
 CompletableFuture<Integer> fu1=CompletableFuture.supplyAsync(()->calc(50));
-		CompletableFuture<Integer> fu2=CompletableFuture.supplyAsync(()->calc(25));
-		fu=fu1.thenCombine(fu2, (x,y) -> (x+y));
-		System.out.println(fu.get());
+CompletableFuture<Integer> fu2=CompletableFuture.supplyAsync(()->calc(25));
+fu=fu1.thenCombine(fu2, (x,y) -> (x+y));
+System.out.println(fu.get());
 ```
