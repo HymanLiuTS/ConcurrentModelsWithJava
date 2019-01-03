@@ -896,5 +896,58 @@ public class AskThread implements Runnable {
 ```
 　　主函数中模拟长时间的计算过程，其中future.complete(60)的意思是已经计算完成并且通知计算结果60，这里和传统的future模式的区别就是，我们可以手动的改变future的状态，调用comlele()之后，表示工作完成。
   
-* 异步执行任务
-  
+* 异步执行任务<br>
+　　CompeletableFuture提供了异步的函数可以异步执行任务，函数的参数为一个静态方法：
+```java
+public static Integer calc(Integer para) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		return para * para;
+	}
+
+public static void main(String[] args) throws InterruptedException, ExecutionException {
+		final CompletableFuture<Integer> future=CompletableFuture.supplyAsync(()->calc(50));
+		System.out.println(future.get());
+	}
+```
+　　除了以上代码中的CompletableFuture.supplyAsync之外，CompletableFuture还包含其它的异步方法：
+　　（1）static <U> CompeletableFuture<U> supplyAsync(Supplier<U> supplier);<br>
+　　（2）static <U> CompeletableFuture<U> supplyAsync(Supplier<U> supplier,Executor executor);<br>
+　　（3）static <U> CompeletableFuture<U> runAsync(Supplier<U> supplier);<br>
+　　（4）static <U> CompeletableFuture<U> runAsync(Supplier<U> supplier,Executor executor);<br>
+　　方法中我们可以指定执行异步操作的线程池executor，如果不指定则在默认的ForkJoinPool.common中执行；supplyAsync和runAsync分别表示作为参数的函数带返回值或者不带返回值。
+
+* 流式调用<br>
+　　CompeletableFuture实现了了CompeletableStage接口，可以实现流式调用：
+ ```java
+ CompletableFuture<Object> fu=CompletableFuture.supplyAsync(()->calc(50))
+				.thenApply(x->Integer.toString(x))
+				.thenApply((str)->"\""+str+"\"");
+		System.out.println(fu.get());
+ ```
+* 异常处理<br>
+　　CompeletableFuture的异常处理可以直接在流式调用语句中进行
+```java
+ CompletableFuture<Object> fu=CompletableFuture.supplyAsync(()->calc(50))
+				.exceptionally(ex->{System.out.println(ex);return 0;})
+				.thenApply(x->Integer.toString(x))
+				.thenApply((str)->"\""+str+"\"");
+		System.out.println(fu.get());
+```
+* 组合多个CompletableFuture<br>
+　　可以使用thenCompose方法将两个CompletableFuture组合在一起，前一个CompletableFuture的返回结果将作为后一个的函数的参数：
+```java
+CompletableFuture<Object> fu=CompletableFuture.supplyAsync(()->calc(50))
+				.thenCompose((i)->CompletableFuture.supplyAsync(()->calc2(i)));
+		System.out.println(fu.get());
+```
+　　也可以使用thenCombine将两个CompletableFuture的结果作为参数传给第三个CompletableFuture：
+```java
+CompletableFuture<Integer> fu1=CompletableFuture.supplyAsync(()->calc(50));
+		CompletableFuture<Integer> fu2=CompletableFuture.supplyAsync(()->calc(25));
+		fu=fu1.thenCombine(fu2, (x,y) -> (x+y));
+		System.out.println(fu.get());
+```
