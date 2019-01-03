@@ -913,7 +913,7 @@ public static void main(String[] args) throws InterruptedException, ExecutionExc
 		System.out.println(future.get());
 	}
 ```
-　　除了以上代码中的CompletableFuture.supplyAsync之外，CompletableFuture还包含其它的异步方法：
+　　除了以上代码中的CompletableFuture.supplyAsync之外，CompletableFuture还包含其它的异步方法：<br>
 　　（1）static <U> CompeletableFuture<U> supplyAsync(Supplier<U> supplier);<br>
 　　（2）static <U> CompeletableFuture<U> supplyAsync(Supplier<U> supplier,Executor executor);<br>
 　　（3）static <U> CompeletableFuture<U> runAsync(Supplier<U> supplier);<br>
