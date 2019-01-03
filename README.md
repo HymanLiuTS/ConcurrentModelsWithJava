@@ -861,3 +861,40 @@ public class PrimeUtil {
 
 }
 ```
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 46CompeletableFutureTS<br>
+　　CompeletableFuture是一种增强的Future模式工具，它在java8中被提供出来，主要用来实现java8中函数式编程的流式调用。
+* 普通future模式的功能
+```java
+public class AskThread implements Runnable {
+
+	CompletableFuture<Integer> re = null;
+
+	public AskThread(CompletableFuture<Integer> re) {
+		this.re = re;
+	}
+
+	@Override
+	public void run() {
+		int myRe = 0;
+		try {
+			myRe = re.get() * re.get();
+		} catch (InterruptedException | ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(myRe);
+	}
+
+	public static void main(String[] args) throws InterruptedException {
+		final CompletableFuture<Integer> future = new CompletableFuture<>();
+		new Thread(new AskThread(future)).start();
+		Thread.sleep(1000);
+		future.complete(60);
+	}
+
+}
+```
+　　主函数中模拟长时间的计算过程，其中future.complete(60)的意思是已经计算完成并且通知计算结果60，这里和传统的future模式的区别就是，我们可以手动的改变future的状态，调用comlele()之后，表示工作完成。
+  
+* 异步执行任务
+  
