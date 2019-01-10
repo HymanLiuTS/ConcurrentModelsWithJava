@@ -993,7 +993,7 @@ double distanceFromOrigin() {
 	}
 
 ```
-　　获取通过乐观锁的方式去处理：
+　　或者通过乐观锁的方式去处理：
 ```java
 		double distanceFromOrigin() {
 		long stamp = this.sl.tryOptimisticRead();
@@ -1007,5 +1007,60 @@ double distanceFromOrigin() {
 	}
 
 ```
-* StampedLock实现原理
+* StampedLock实现原理<br>
 　　StampedLock内部维护着一个等待线程的队列，所有申请锁需要等待的线程都被放入该队列中，因此线程间申请锁的顺序是先进先出。所有线程都在自旋等待，等待条件是前一个队列元素是否释放锁，若已经释放则停止等待，继续执行线程；若没有释放，则继续等待。内部等待采用park()使线程阻塞，因此当线程发生中断时，park()返回，会导致线程继续执行而此时前一个元素还在持有锁的话，会造成本线程的死循环，CUP占有率会飙升。
+
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 48LongAddrTS<br>
+* LongAdder
+　　LongAdder相对于普通Long类型和采用CAS算法实现的AtomicLong来说，在并行时会更快，主要得益于它的实现机制：LongAdder在所有的数据都记录在一个称为base的变量中，如果在多线程的条件下，大家修改base没有冲突。但是一旦修改base发生冲突，就会初始化cell数组，将变量分离成多个cell，每个cell独自维护内部的值。如果某个cell上更新依然发生冲突，系统还会尝试创建新的cell。
+```java
+private LongAdder laccount = new LongAdder();
+laccount.increment();//自增1
+v = laccount.sum();//获取值
+```
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 49LongAccumulatorTS<br>
+* 49LongAccumulator
+　　LongAccumulator内部的优化方式和LongAdder类似，都是将一个long型整数进行分割，存在不同的变量中，以防止多线程竞争。LongAccumulator更可以实现任意函数操作,如下创建LongAccumulator，传入max函数，而LongAccumulator的第二个参数是初始值。accumulator.accumulate(value)是将数值value传入到LongAccumulator，LongAccumulator会通过max识别最大值，并保存在内部（很可能是cell数组内，也可能是base）。
+  
+```java
+public static long max(long i, long j) {
+	return i > j ? i : j;
+}
+
+public static void main(String[] args) throws InterruptedException {
+	LongAccumulator accumulator = new LongAccumulator(LongAccumulatorTS::max, Long.MIN_VALUE);
+	Thread[] ts = new Thread[1000];
+	for (int i = 0; i < 1000; i++) {
+		ts[i] = new Thread(() -> {
+			Random random = new Random();
+			long value = random.nextLong();
+			accumulator.accumulate(value);
+		});
+		ts[i].start();
+	}
+	for (int i = 0; i < 1000; i++) {
+		ts[i].join();
+	}
+	System.out.println(accumulator.longValue());
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
