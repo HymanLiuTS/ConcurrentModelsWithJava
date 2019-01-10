@@ -1019,7 +1019,7 @@ laccount.increment();//自增1
 v = laccount.sum();//获取值
 ```
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 49LongAccumulatorTS<br>
-* 49LongAccumulator
+* 49LongAccumulator<br>
 　　LongAccumulator内部的优化方式和LongAdder类似，都是将一个long型整数进行分割，存在不同的变量中，以防止多线程竞争。LongAccumulator更可以实现任意函数操作,如下创建LongAccumulator，传入max函数，而LongAccumulator的第二个参数是初始值。accumulator.accumulate(value)是将数值value传入到LongAccumulator，LongAccumulator会通过max识别最大值，并保存在内部（很可能是cell数组内，也可能是base）。
   
 ```java
