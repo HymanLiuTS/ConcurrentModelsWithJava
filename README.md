@@ -951,3 +951,61 @@ CompletableFuture<Integer> fu2=CompletableFuture.supplyAsync(()->calc(25));
 fu=fu1.thenCombine(fu2, (x,y) -> (x+y));
 System.out.println(fu.get());
 ```
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) 47StampLockTS<br>
+* StampedLock<br>
+　　StampedLock是读写锁的改进版，它也有读锁readLock和写锁writeLock，readLock和readLock之间可以完全并发，readLock也会阻塞writeLock，这点和读写锁是一样的，但是它有一种乐观读锁模式tryOpiimisticRaed,在使用读出来的数据之前可以通过方法validate来判断读出来的值是否有效，如果无效，可以采用类似读写锁的那种悲观模式，利用readLock再次读取，并阻塞写线程，也可以利用乐观模式采用一个死循环，不断尝试乐观读。<br>
+　　下面的方法，采用写锁进行数据的修改：
+```java
+	private double x, y;
+	private final StampedLock sl = new StampedLock();
+
+	void move(double deltaX, double deltaY) {
+		long stamp = this.sl.writeLock();
+		try {
+			x += deltaX;
+			y += deltaY;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			this.sl.unlockWrite(stamp);
+		}
+	}
+```
+　　接下来，在读锁时，我们采用传统的读写锁方式处理读过程：
+```java
+double distanceFromOrigin() {
+		long stamp = this.sl.tryOptimisticRead();
+		double currentX = x, currentY = y;
+		if (!sl.validate(stamp)) {
+			stamp = sl.readLock();
+			try {
+				currentX = x;
+				currentY = y;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				sl.unlockRead(stamp);
+			}
+		}
+		return Math.sqrt(currentX * currentX + currentY * currentY);
+	}
+
+```
+　　获取通过乐观锁的方式去处理：
+```java
+		double distanceFromOrigin() {
+		long stamp = this.sl.tryOptimisticRead();
+		double currentX = x, currentY = y;
+		while(!sl.validate(stamp)) {
+			stamp = this.sl.tryOptimisticRead();
+		}
+		currentX = x;
+		currentY = y;
+		return Math.sqrt(currentX * currentX + currentY * currentY);
+	}
+
+```
+* StampedLock实现原理
+　　StampedLock内部维护着一个等待线程的队列，所有申请锁需要等待的线程都被放入该队列中，因此线程间申请锁的顺序是先进先出。所有线程都在自旋等待，等待条件是前一个队列元素是否释放锁，若已经释放则停止等待，继续执行线程；若没有释放，则继续等待。内部等待采用park()使线程阻塞，因此当线程发生中断时，park()返回，会导致线程继续执行而此时前一个元素还在持有锁的话，会造成本线程的死循环，CUP占有率会飙升。
